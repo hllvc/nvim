@@ -1,0 +1,104 @@
+{
+  "latex.build.executable": "pdflatex",
+  "codeLens.enable": true,
+  "vetur.dev.vlsPath": "/usr/lib/vls",
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.syntaxProfiles": {
+    "vue-html": "html",
+    "vue": "html"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html",
+    "vue": "html"
+  },
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go",
+    "python",
+    "markdown",
+    "javascript",
+    "cpp",
+    "vue",
+    "c",
+    "typescript",
+    "json",
+    "jsonc",
+    "css",
+    "html",
+    "scss"
+  ],
+  "coc.source.around.firstMatch": false,
+  "coc.source.file.ignoreHidden": false,
+  "diagnostic.format": "%message [%source]",
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.separateRelatedInformationAsDiagnostics": true,
+  "list.normalMappings": {
+    "<C-c>": "do:exit"
+  },
+  "list.insertMappings": {
+    "<C-c>": "do:exit"
+  },
+  "signature.target": "echo",
+  "suggest.timeout": 5000,
+  "suggest.asciiCharactersOnly": true,
+  "languageserver": {
+    "vimls": {
+      "module": "/usr/lib/node_modules/vim-language-server/bin/index.js",
+      "args": ["--node-ipc"],
+      "initializationOptions": {
+        "isNeovim": true,
+        "iskeyword": "@,48-57,_,192-255,-#",
+        "vimruntime": "",
+        "runtimepath": "",
+        "diagnostic": {
+          "enable": true
+        },
+        "indexes": {
+          "runtimepath": true,
+          "gap": 100,
+          "count": 3,
+          "projectRootPatterns": [
+            "strange-root-pattern",
+            ".git",
+            "autoload",
+            "plugin"
+          ]
+        },
+        "suggest": {
+          "fromVimruntime": true,
+          "fromRuntimepath": false
+        }
+      },
+      "filetypes": ["vim"]
+    },
+    "latex": {
+      "command": "/usr/bin/texlab",
+      "filetypes": ["tex", "bib", "plaintex", "context"]
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg"
+      ],
+      "initializationOptions": {
+        "index": {
+          "onChange": true
+        },
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "highlight": {
+          "lsRanges": true
+        }
+      }
+    }
+  }
+}
