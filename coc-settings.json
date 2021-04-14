@@ -1,6 +1,15 @@
 {
-  "latex.build.executable": "pdflatex",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "codeLens.enable": true,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "git.realtimeGutters": true,
+  "git.enableGutters": true,
   "vetur.dev.vlsPath": "/usr/lib/vls",
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showExpandedAbbreviation": "always",
@@ -19,9 +28,7 @@
     "python",
     "markdown",
     "javascript",
-    "cpp",
     "vue",
-    "c",
     "typescript",
     "json",
     "jsonc",
@@ -31,8 +38,8 @@
   ],
   "coc.source.around.firstMatch": false,
   "coc.source.file.ignoreHidden": false,
-  "diagnostic.format": "%message [%source]",
-  "diagnostic.virtualText": true,
+  "diagnostic.format": "%message",
+  "diagnostic.virtualText": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
   "list.normalMappings": {
@@ -74,29 +81,17 @@
       },
       "filetypes": ["vim"]
     },
-    "latex": {
-      "command": "/usr/bin/texlab",
-      "filetypes": ["tex", "bib", "plaintex", "context"]
-    },
     "ccls": {
       "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg"
-      ],
+      "args": ["--log-file=/tmp/ccls.log", "-v=1"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json"],
       "initializationOptions": {
-        "index": {
-          "onChange": true
-        },
         "cache": {
           "directory": "/tmp/ccls"
         },
-        "highlight": {
-          "lsRanges": true
+        "client": {
+          "snippetSupport": true
         }
       }
     }

@@ -1,12 +1,13 @@
 call plug#begin("~/.vim/plugged")
 
+" cpp/c
+Plug 'rhysd/vim-clang-format'
+
 " NERDTree plugins
 Plug 'preservim/nerdtree'
-Plug 'flw-cn/vim-nerdtree-l-open-h-close'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -17,10 +18,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
-Plug 'tomtom/tcomment_vim'
-
-Plug 'tpope/vim-fugitive'
-
+Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring'
 
 Plug 'vim-syntastic/syntastic'
 Plug 'matze/vim-move'
@@ -41,14 +40,12 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'Yggdroot/indentLine'
 
 " latex
-" Plug 'lervag/vimtex'
+Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
 
 " vue.js
 Plug 'posva/vim-vue'
 Plug 'leafoftree/vim-vue-plugin'
-
-
 
 call plug#end()
 
@@ -79,12 +76,13 @@ nnoremap <C-s> <C-w>s<CR>
 nnoremap <C-v> <C-w>v<CR><C-w>l
 
 " fuzzy finder
-nnoremap <C-p> :FZF<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <C-n> :Buffers<CR>
 let g:fzf_action = {
-			\ 'ctrl-t': 'tab split',
-			\ 'ctrl-s': 'split',
-			\ 'ctrl-v': 'vsplit'
-			\}
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-s': 'split',
+\ 'ctrl-v': 'vsplit'
+\}
 
 " Theme
 " set t_Co=256
@@ -92,7 +90,6 @@ set bg=dark
 let g:gruvbox_italic=1
 let g:gruvbox_bold=1
 let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
 let g:gruvbox_hls_cursor='aqua'
 let g:gruvbox_sign_column='bg0'
 colorscheme gruvbox
@@ -103,14 +100,17 @@ hi CursorLine term=bold gui=bold cterm=bold
 hi CursorLineNr term=bold gui=bold cterm=bold ctermbg=NONE
 
 " testing
-" set lazyredraw
+set lazyredraw
 
 " other
-set conceallevel=2
-set concealcursor=v
+set conceallevel=0
+" set nuw=1
+set ttyfast
+set formatoptions=tcqrn1
 set number
 set nowrap
 set autoindent
+set textwidth=80
 set smarttab
 set enc=utf-8
 set incsearch
@@ -131,21 +131,21 @@ set autoread
 
 " Custom functions
 function ShowLineNumber()
-	if &number == 1
-		set nonumber
-	else
-		set number
-	endif
+if &number == 1
+set nonumber
+else
+set number
+endif
 endf
 
 function ToggleRelativeNumbers()
-	if &relativenumber == 1
-		set norelativenumber
-		set number
-	else
-		set relativenumber
-		set nonumber
-	endif
+if &relativenumber == 1
+set norelativenumber
+set number
+else
+set relativenumber
+set nonumber
+endif
 endf
 
 nnoremap <silent> <F3> :call ShowLineNumber()<CR>
@@ -156,16 +156,16 @@ nnoremap <silent> <F4> :call ToggleRelativeNumbers()<CR>
 set hidden
 set nobackup
 set nowritebackup
-set updatetime=500
+set updatetime=300
 
 " testing
 set shortmess+=c
 " set cmdheight=2
 
 if has("patch-8.1.1564")
-	set signcolumn=number
+set signcolumn=number
 else
-	set signcolumn=yes
+set signcolumn=yes
 endif
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "<TAB>"
@@ -175,9 +175,9 @@ let g:coc_snippet_prev = '<S-TAB>'
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-	inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 else
-	inoremap <silent><expr> <c-@> coc#refresh()
+inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -194,13 +194,13 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	elseif (coc#rpc#ready())
-		call CocActionAsync('doHover')
-	else
-		execute '!' . &keywordprg . " " . expand('<cword>')
-	endif
+if (index(['vim','help'], &filetype) >= 0)
+execute 'h '.expand('<cword>')
+elseif (coc#rpc#ready())
+call CocActionAsync('doHover')
+else
+execute '!' . &keywordprg . " " . expand('<cword>')
+endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -214,11 +214,11 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-	autocmd!
-	" Setup formatexpr specified filetype(s).
-	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-	" Update signature help on jump placeholder.
-	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+autocmd!
+" Setup formatexpr specified filetype(s).
+autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+" Update signature help on jump placeholder.
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Add (Neo)Vim's native statusline support.
@@ -239,23 +239,23 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:term_buf = 0
 let g:term_win = 0
 function! TermToggle(height)
-	if win_gotoid(g:term_win)
-		hide
-	else
-		botright new
-		exec "resize " . a:height
-		try
-			exec "buffer " . g:term_buf
-		catch
-			call termopen($SHELL, {"detach": 1})
-		let g:term_buf = bufnr("")
-			set nonumber
-			set norelativenumber
-			set signcolumn=no
-		endtry
-		startinsert!
-		let g:term_win = win_getid()
-	endif
+if win_gotoid(g:term_win)
+hide
+else
+botright new
+exec "resize " . a:height
+try
+exec "buffer " . g:term_buf
+catch
+call termopen($SHELL, {"detach": 1})
+let g:term_buf = bufnr("")
+set nonumber
+set norelativenumber
+set signcolumn=no
+endtry
+startinsert!
+let g:term_win = win_getid()
+endif
 endfunction
 
 let g:term_height = 20
@@ -266,17 +266,17 @@ inoremap <silent><A-t> <Esc>:call TermToggle(g:term_height)<CR>
 tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(g:term_height)<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-			\ 'Modified'  :'✹',
-			\ 'Staged'    :'✚',
-			\ 'Untracked' :'✭',
-			\ 'Renamed'   :'➜',
-			\ 'Unmerged'  :'═',
-			\ 'Deleted'   :'✖',
-			\ 'Dirty'     :'✗',
-			\ 'Ignored'   :'☒',
-			\ 'Clean'     :'✔︎',
-			\ 'Unknown'   :'?',
-			\ }
+\ 'Modified'  :'✹',
+\ 'Staged'    :'✚',
+\ 'Untracked' :'✭',
+\ 'Renamed'   :'➜',
+\ 'Unmerged'  :'═',
+\ 'Deleted'   :'✖',
+\ 'Dirty'     :'✗',
+\ 'Ignored'   :'☒',
+\ 'Clean'     :'✔︎',
+\ 'Unknown'   :'?',
+\ }
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:NERDTreeGitStatusShowIgnored = 1
@@ -287,15 +287,10 @@ autocmd FocusLost * silent! wa
 " additional remaps
 inoremap jk <ESC>
 
-" highlight options
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-
 " cpplint
-let g:syntastic_cpp_checkers = ['cpplint']
-let g:syntastic_c_checkers = ['cpplint']
-let g:syntastic_cpp_cpplint_exec = 'cpplint'
+" let g:syntastic_cpp_checkers = ['cpplint']
+" let g:syntastic_c_checkers = ['cpplint']
+" let g:syntastic_cpp_cpplint_exec = 'cpplint'
 
 " mapping arrow keys
 nmap <Left> <<
@@ -336,19 +331,31 @@ let g:livepreview_cursorhold_recompile = 0
 autocmd BufReadPost,BufNewFile *.vue setlocal filetype=vue
 
 let g:LanguageClient_serverCommands = {
-    \ 'vue': ['vls']
-    \ }
+\ 'vue': ['vls']
+\ }
 
 let g:vim_vue_plugin_config = { 
-      \'syntax': {
-      \   'template': ['html'],
-      \   'script': ['javascript', 'typescript'],
-      \   'style': ['css', 'scss'],
-      \},
-      \'full_syntax': [],
-      \'attribute': 1,
-      \'keyword': 1,
-      \'foldexpr': 1,
-      \'init_indent': 0,
-      \'debug': 0,
-      \}
+\'syntax': {
+\   'template': ['html'],
+\   'script': ['javascript', 'typescript'],
+\   'style': ['css', 'scss'],
+\},
+\'full_syntax': [],
+\'attribute': 1,
+\'keyword': 1,
+\'foldexpr': 1,
+\'init_indent': 0,
+\'debug': 0,
+\}
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
+let g:syntastic_error_symbol = "✘"
+let g:syntastic_warning_symbol = ""
+
+" clang format
+
+let g:clang_format#auto_format = 1
