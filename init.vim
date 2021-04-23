@@ -1,68 +1,106 @@
 call plug#begin("~/.vim/plugged")
 
-" cpp/c
-Plug 'rhysd/vim-clang-format'
+" General {{{
+set relativenumber
+set enc=utf-8
+set noswapfile
+set noruler
+" set formatoptions=tcqrn1
 
-" NERDTree plugins
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+set autoread
+set history=1000
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+set backspace=indent,eol,start
+set clipboard=unnamed
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
+set go=a
+set mouse=a
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" searching
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+set nolazyredraw
 
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
+" error bells
+set noerrorbells
+set visualbell
+set t_vb=
+set tm=500
+"}}}
 
-Plug 'tpope/vim-commentary'
-Plug 'suy/vim-context-commentstring'
+" appearance {{{
 
-Plug 'vim-syntastic/syntastic'
-Plug 'matze/vim-move'
+set number
+set nowrap
+set wrapmargin=8
+set linebreak
+set showbreak=↪
+set autoindent
+set ttyfast
+set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
+set laststatus=2
+set so=7
+" set so=999
+set hidden
+set noshowmode
+set wildmenu
+set wildmode=longest,list,full
+set shell=$SHELL
+set cmdheight=1
+set title
+set showmatch
+set mat=2
+set updatetime=500
+set nobackup
+set nowritebackup
+set signcolumn=yes
+set shortmess+=c
 
-" Javascript/Typescript/JSX
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'othree/yajs.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'turbio/bracey.vim'
-Plug 'ap/vim-css-color'
+" Tab control
+set smarttab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set shiftround
 
-" scss & css
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'hail2u/vim-css3-syntax'
+" code folding
+set foldmethod=syntax
+set foldlevelstart=99
+set foldnestmax=10
+set foldlevel=1
 
-" indent line
-Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'Yggdroot/indentLine'
+" toggle invisible characters
+set list
+set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 
-" latex
-Plug 'lervag/vimtex'
-Plug 'xuhdev/vim-latex-live-preview'
 
-" vue.js
-Plug 'posva/vim-vue'
-Plug 'leafoftree/vim-vue-plugin'
+" switch cursor to line when in insert mode, and block when not
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+    \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+    \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-call plug#end()
+" highlight conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-"Config Section
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre *.[ch] %s/\%$/\r/e
 
-" nerdTree config START
+" General mappings {{{
+let mapleader=','
+inoremap jk <esc>
+nmap <leader>, :w<cr>
 
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" clear highlighted search
+noremap <space> :set hlsearch! hlsearch?<cr>
 
-let g:NERDTreeStatusline = ''
-map <silent> <C-n> :NERDTreeToggle<CR>
-
-" nerdTree config END
+" new tab
+nnoremap <silent><leader>t :tabnew<CR>
 
 " use alt+hjkl to move between split/vsplit panels
-
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
@@ -72,101 +110,217 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-nnoremap <C-s> <C-w>s<CR>
-nnoremap <C-v> <C-w>v<CR><C-w>l
+" use Shift+alt+hjkl to move windows between split/vsplit panels
+nnoremap <leader><A-h> <C-\><C-n><C-w><S-h>
+nnoremap <leader><A-j> <C-\><C-n><C-w><S-j>
+nnoremap <leader><A-k> <C-\><C-n><C-w><S-k>
+nnoremap <leader><A-l> <C-\><C-n><C-w><S-l>
+nnoremap <leader><A-h> <C-\><C-n><C-w><S-h>
+nnoremap <leader><A-j> <C-\><C-n><C-w><S-j>
+nnoremap <leader><A-k> <C-\><C-n><C-w><S-k>
+nnoremap <leader><A-l> <C-\><C-n><C-w><S-l>
+
+" use Ctrl+v for vertical split
+nnoremap <leader>s <C-w>s<CR>
+
+" use Ctrl+s for split
+nnoremap <leader>v <C-w>v<CR><C-w>l
+
+" keep visual selection while indenting
+vmap < <gv
+vmap > >gv
+
+" switch between current and last buffer
+nmap <leader>. <c-^>
+
+" enable . command in visual mode
+vnoremap . :normal .<cr>
+
+" scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" inner-line
+xnoremap <silent> il :<c-u>normal! g_v^<cr>
+onoremap <silent> il :<c-u>normal! g_v^<cr>
+
+" around line
+vnoremap <silent> al :<c-u>normal! $v0<cr>
+onoremap <silent> al :<c-u>normal! $v0<cr>
+
+" save all files on focus lost, ignoring warnings about untitled buffers
+autocmd FocusLost * silent! wa
+
+" toggle relativenumber
+function ToggleRelativeNumbers()
+if &relativenumber == 1
+set norelativenumber
+else
+set relativenumber
+endif
+endf
+
+nnoremap <silent> <F3> :call ToggleRelativeNumbers()<CR>
+
+" Terminal Function
+let g:term_buf = 0
+let g:term_win = 0
+function! TermToggle(height)
+if win_gotoid(g:term_win)
+hide
+else
+botright new
+exec "resize " . a:height
+try
+exec "buffer " . g:term_buf
+catch
+call termopen($SHELL, {"detach": 1})
+let g:term_buf = bufnr("")
+set nonumber
+set norelativenumber
+set signcolumn=no
+endtry
+startinsert!
+let g:term_win = win_getid()
+endif
+endfunction
+
+let g:term_height = 20
+
+" Toggle terminal on/off (neovim)
+nnoremap <silent><A-t> :call TermToggle(g:term_height)<CR>
+inoremap <silent><A-t> <Esc>:call TermToggle(g:term_height)<CR>
+tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(g:term_height)<CR>
+
+" }}}
+
+" }}}
+
+" Startify: Fancy startup screen for vim {{{
+Plug 'mhinz/vim-startify'
+
+" Don't change to directory when selecting a file
+let g:startify_files_number = 10
+let g:startify_change_to_dir = 0
+let g:startify_custom_header = [ ]
+let g:startify_relative_path = 1
+let g:startify_use_env = 1
+
+" Custom startup list, only show MRU from current directory/project
+let g:startify_lists = [
+\  { 'type': 'dir',       'header': [ 'Files '. getcwd() ] },
+\  { 'type': 'sessions',  'header': [ 'Sessions' ]       },
+\  { 'type': 'bookmarks', 'header': [ 'Bookmarks' ]      },
+\  { 'type': 'commands',  'header': [ 'Commands' ]       },
+\ ]
+
+let g:startify_commands = [
+\   { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
+\   { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
+\   { 'uc': [ 'Update CoC Plugins', ':CocUpdate' ] },
+\ ]
+
+let g:startify_bookmarks = [
+	\ { 'c': '~/.config/nvim/init.vim' },
+	\ { 'g': '~/.gitconfig' },
+	\ { 'z': '~/.zshrc' }
+\ ]
+
+autocmd User Startified setlocal cursorline
+nmap <leader>st :Startify<cr>
+" }}}
+
+
+" Pluginss
+
+" cpp highlighting
+Plug 'octol/vim-cpp-enhanced-highlight'
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+
+" text obj indent
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+
+" sort motion
+Plug 'christoomey/vim-sort-motion'
+
+" context-aware pasting
+Plug 'sickill/vim-pasta'
 
 " fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :Files<CR>
-nnoremap <C-n> :Buffers<CR>
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-s': 'split',
 \ 'ctrl-v': 'vsplit'
 \}
 
-" Theme
-" set t_Co=256
-set bg=dark
-let g:gruvbox_italic=1
-let g:gruvbox_bold=1
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_hls_cursor='aqua'
-let g:gruvbox_sign_column='bg0'
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
-syntax enable
-set cursorline
-hi CursorLine term=bold gui=bold cterm=bold
-hi CursorLineNr term=bold gui=bold cterm=bold ctermbg=NONE
+" markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-" testing
-set lazyredraw
+" cpp/c
+Plug 'rhysd/vim-clang-format'
+let g:clang_format#style_options = {
+						\ "IndentCaseLabels" : "false",
+						\ "IndentCaseBlocks" : "true" }
 
-" other
-set conceallevel=0
-" set nuw=1
-set ttyfast
-set formatoptions=tcqrn1
-set number
-set nowrap
-set autoindent
-set textwidth=80
-set smarttab
-set enc=utf-8
-set incsearch
-set showmatch
-set nohlsearch
-set noswapfile
-set relativenumber
-set noruler
-set ignorecase
-set smartcase
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set noexpandtab
-set clipboard+=unnamed
-set so=999
-set autoread
+autocmd FileType c,cpp,objc ClangFormatAutoEnable
 
-" Custom functions
-function ShowLineNumber()
-if &number == 1
-set nonumber
-else
-set number
-endif
-endf
+" " theme
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" Plug 'morhetz/gruvbox'
+" let g:gruvbox_italic=1
+" let g:gruvbox_bold=1
+" let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_hls_cursor='aqua'
+" let g:gruvbox_sign_column='bg0'
+Plug 'sainnhe/gruvbox-material'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_sign_column_background = 'none'
+let g:gruvbox_material_diagnostic_text_highlight = 1
+" let g:gruvbox_material_diagnostic_line_highlight = 1
+let g:gruvbox_material_statusline_style = 'original'
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_background = 'hard'
 
-function ToggleRelativeNumbers()
-if &relativenumber == 1
-set norelativenumber
-set number
-else
-set relativenumber
-set nonumber
-endif
-endf
+" coc {{{
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+				\ 'coc-yank',
+				\ 'coc-snippets',
+				\ 'coc-scssmodules',
+				\ 'coc-html',
+				\ 'coc-vimtex',
+				\ 'coc-vimlsp',
+				\ 'coc-stylelint',
+				\ 'coc-pyright',
+				\ 'coc-vetur',
+        \ 'coc-css',
+        \ 'coc-json',
+        \ 'coc-tsserver',
+        \ 'coc-git',
+        \ 'coc-eslint',
+        \ 'coc-tslint-plugin',
+        \ 'coc-pairs',
+        \ 'coc-sh',
+        \ 'coc-emmet',
+        \ 'coc-prettier',
+        \ 'coc-explorer',
+        \ 'coc-diagnostic'
+        \ ]
 
-nnoremap <silent> <F3> :call ShowLineNumber()<CR>
-nnoremap <silent> <F4> :call ToggleRelativeNumbers()<CR>
-
-" settings for coc
-
-set hidden
-set nobackup
-set nowritebackup
-set updatetime=300
-
-" testing
-set shortmess+=c
-" set cmdheight=2
-
-if has("patch-8.1.1564")
-set signcolumn=number
-else
-set signcolumn=yes
-endif
+" coc-explorer
+:nnoremap <silent><c-n> :CocCommand explorer<cr>
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-h>"
@@ -207,7 +361,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-" nmap <F2> <Plug>(coc-rename)
+nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -225,116 +379,61 @@ augroup end
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" airline other
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+" }}}
 
-" " ruby workaround
-"
-" let g:ruby_host_prog = '/home/hllvc/.gem/ruby/2.7.0/bin/neovim-ruby-host'
-
-" Terminal Function
-let g:term_buf = 0
-let g:term_win = 0
-function! TermToggle(height)
-if win_gotoid(g:term_win)
-hide
-else
-botright new
-exec "resize " . a:height
-try
-exec "buffer " . g:term_buf
-catch
-call termopen($SHELL, {"detach": 1})
-let g:term_buf = bufnr("")
-set nonumber
-set norelativenumber
-set signcolumn=no
-endtry
-startinsert!
-let g:term_win = win_getid()
-endif
-endfunction
-
-let g:term_height = 20
-
-" Toggle terminal on/off (neovim)
-nnoremap <silent><A-t> :call TermToggle(g:term_height)<CR>
-inoremap <silent><A-t> <Esc>:call TermToggle(g:term_height)<CR>
-tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(g:term_height)<CR>
-
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-\ 'Modified'  :'✹',
-\ 'Staged'    :'✚',
-\ 'Untracked' :'✭',
-\ 'Renamed'   :'➜',
-\ 'Unmerged'  :'═',
-\ 'Deleted'   :'✖',
-\ 'Dirty'     :'✗',
-\ 'Ignored'   :'☒',
-\ 'Clean'     :'✔︎',
-\ 'Unknown'   :'?',
-\ }
-
-let g:NERDTreeGitStatusUseNerdFonts = 1
-let g:NERDTreeGitStatusShowIgnored = 1
-let g:NERDTreeGitStatusShowClean = 1
-
-autocmd FocusLost * silent! wa
-
-" additional remaps
-inoremap jk <ESC>
-
-" cpplint
-" let g:syntastic_cpp_checkers = ['cpplint']
-" let g:syntastic_c_checkers = ['cpplint']
-" let g:syntastic_cpp_cpplint_exec = 'cpplint'
-
-" mapping arrow keys
-nmap <Left> <<
-nmap <Right> >>
-
-vmap <Left> <gv
-vmap <Right> >gv
-
-" moving lines
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'matze/vim-move'
 let g:move_key_modifier = 'C'
 
-" new tab
-nnoremap <silent><C-t> :tabnew<CR>
+" commenting
+Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring'
 
-" prettier setup
-command! -nargs=0 Prettier :cal CocAction{'runCommand', 'prettier.formatFile'}
+" sytax checker
+Plug 'vim-syntastic/syntastic'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
+let g:syntastic_error_symbol = ""
+let g:syntastic_warning_symbol = ""
+let g:syntastic_tex_checkers = ['chktex']
 
-" bracey config
+" Javascript/Typescript/JSX/Vue
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'othree/yajs.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'turbio/bracey.vim'
 let g:bracey_server_port=5000
 
-" nerdtree open/close
-let g:nerdTreeMapOpenDirNode = 'l'
-let g:nerdTreeMapCloseDirNode = 'h'
+" scss & css
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'ap/vim-css-color'
 
-" indent line
-let g:indentLine_char = '▏'
-let g:indent_blankline_char = '▏'
-let g:indentLine_setConceal = 0
+" match tags in html, similar to paren support
+Plug 'gregsexton/MatchTag', { 'for': 'html' }
 
+" latex
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview', { 'for' : 'tex' }
+let g:livepreview_previewer = 'evince'
+let g:livepreview_cursorhold_recompile = 0
 " add $$ in tex
 autocmd FileType tex let b:coc_pairs = [["$", "$"]]
 
-" latex
-let g:livepreview_previewer = 'evince'
-let g:livepreview_cursorhold_recompile = 0
-
 " vue.js
+Plug 'posva/vim-vue'
+Plug 'leafoftree/vim-vue-plugin'
 autocmd BufReadPost,BufNewFile *.vue setlocal filetype=vue
 
 let g:LanguageClient_serverCommands = {
 \ 'vue': ['vls']
 \ }
 
-let g:vim_vue_plugin_config = { 
+let g:vim_vue_plugin_config = {
 \'syntax': {
 \   'template': ['html'],
 \   'script': ['javascript', 'typescript'],
@@ -348,14 +447,30 @@ let g:vim_vue_plugin_config = {
 \'debug': 0,
 \}
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 5
-let g:syntastic_error_symbol = "✘"
-let g:syntastic_warning_symbol = ""
+" prettier setup
+command! -nargs=0 Prettier :cal CocAction{'runCommand', 'prettier.formatFile'}
 
-" clang format
+Plug 'ryanoasis/vim-devicons'
 
-let g:clang_format#auto_format = 1
+call plug#end()
+
+" Colorscheme
+set t_Co=256
+set bg=dark
+set termguicolors
+
+colorscheme gruvbox-material
+let g:airline_theme='gruvbox_material'
+
+set nocompatible
+filetype plugin indent on
+syntax enable
+
+set cursorline
+hi CursorLineNr guifg=#d3a356
+
+" make comments and HTML attributes italic
+highlight Comment cterm=italic term=italic gui=italic
+highlight htmlArg cterm=italic term=italic gui=italic
+highlight xmlAttrib cterm=italic term=italic gui=italic
+" highlight Type cterm=italic term=italic gui=italic
