@@ -4,7 +4,7 @@ call plug#begin("~/.vim/plugged")
 set relativenumber
 set enc=utf-8
 set noswapfile
-set noruler
+" set noruler
 " set formatoptions=tcqrn1
 
 set autoread
@@ -21,28 +21,26 @@ set ignorecase
 set smartcase
 set nohlsearch
 set incsearch
-set nolazyredraw
+set lazyredraw
 
 " error bells
 set noerrorbells
 set visualbell
-set t_vb=
-set tm=500
 "}}}
 
 " appearance {{{
 
 set number
 set nowrap
-set wrapmargin=8
+" set wrapmargin=8
 set linebreak
 set showbreak=↪
 set autoindent
 set ttyfast
 set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
 set laststatus=2
-set so=7
-" set so=999
+" set so=7
+set so=999
 set hidden
 set noshowmode
 set wildmenu
@@ -51,7 +49,6 @@ set shell=$SHELL
 set cmdheight=1
 set title
 set showmatch
-set mat=2
 set updatetime=500
 set nobackup
 set nowritebackup
@@ -74,7 +71,6 @@ set foldlevel=1
 " toggle invisible characters
 set list
 set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-
 
 " switch cursor to line when in insert mode, and block when not
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -222,7 +218,7 @@ let g:startify_commands = [
 
 let g:startify_bookmarks = [
 	\ { 'c': '~/.config/nvim/init.vim' },
-	\ { 'g': '~/.gitconfig' },
+	\ { 'k': '~/.config/kitty/kitty.conf'},
 	\ { 'z': '~/.zshrc' }
 \ ]
 
@@ -232,6 +228,12 @@ nmap <leader>st :Startify<cr>
 
 
 " Pluginss
+
+Plug 'preservim/tagbar'
+nmap <silent><leader><tab> :TagbarToggle<cr>
+let g:tagbar_autofocus = 1
+let g:tagbar_show_data_type = 1
+let g:tagbar_vertical = 10
 
 " cpp highlighting
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -272,12 +274,21 @@ let g:clang_format#style_options = {
 autocmd FileType c,cpp,objc ClangFormatAutoEnable
 
 " " theme
+
+" airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+
+let g:airline_section_b = "%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
+function! s:update_git_status()
+	let g:airline_section_b = "%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
+endfunction
+autocmd User CocGitStatusChange call s:update_git_status()
+
 " Plug 'morhetz/gruvbox'
 " let g:gruvbox_italic=1
 " let g:gruvbox_bold=1
@@ -289,7 +300,7 @@ let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_sign_column_background = 'none'
 let g:gruvbox_material_diagnostic_text_highlight = 1
 " let g:gruvbox_material_diagnostic_line_highlight = 1
-let g:gruvbox_material_statusline_style = 'original'
+" let g:gruvbox_material_statusline_style = 'original'
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_background = 'hard'
 
@@ -320,7 +331,7 @@ let g:coc_global_extensions = [
         \ ]
 
 " coc-explorer
-:nnoremap <silent><c-n> :CocCommand explorer<cr>
+:nnoremap <silent><c-n> :CocCommand explorer --sources=file+<cr>
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<C-h>"
@@ -378,7 +389,8 @@ augroup end
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
 " }}}
 
 Plug 'tpope/vim-surround'
