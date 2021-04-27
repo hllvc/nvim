@@ -13,6 +13,7 @@ then clone this repo to `~/.config/nvim` and install plugins
 
 ```
 git clone https://github.com/hllvc/nvim.git ~/.config/nvim
+mv ~/.config/nvim/gruvbox-material.vim ~/.vim/colors/gruvbox-material.vim
 nvim +PlugInstall +qa
 ```
 
