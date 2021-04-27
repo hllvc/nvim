@@ -17,4 +17,18 @@ mv ~/.config/nvim/gruvbox-material.vim ~/.vim/colors/gruvbox-material.vim
 nvim +PlugInstall +qa
 ```
 
+If you want my custom snippets execute following command
+
+```
+mv -r ~/.config/nvim/ultisnips ~/.config/coc/
+```
+
+otherwise
+
+```
+rm -rf ~/.config/nvim/ultisnips
+```
+
+to delete cloned folder.
+
 #### Maybe for some plugins to work additional packages need to be downloaded.
