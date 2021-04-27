@@ -1,0 +1,239 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+# This snippet file enables vue files to use tabs for html, js and css. It also
+# includes some vue-specific html-like snippets, as well as some general
+# boilerplate code for vue.
+
+extends html, javascript, css
+
+# These snippets form a port of Sarah Drasner's vue-sublime-snippets
+
+# some html-like snippets
+
+snippet slot
+<slot>
+	$0
+</slot>
+endsnippet
+
+snippet template
+<template>
+	$0
+</template>
+endsnippet
+
+snippet transition
+<transition>
+	$0
+</transition>
+endsnippet
+
+# The following snippets create more complex boilerplate code.
+
+snippet def
+<template>
+	<div>
+
+	</div>
+</template>
+
+<script>
+	export default{
+		${0}
+	}
+</script>
+
+<style scoped>
+
+</style>
+endsnippet
+
+snippet impexp
+import ${1:Name} from './components/$1.vue';
+
+export default {
+	components: {
+		$1
+	}
+}
+endsnippet
+
+snippet actions
+	actions: {
+		${1:updateValue}({commit}, ${2:payload}) {
+			commit($1, $2);
+		}
+	}
+endsnippet
+
+# # Add in js animation hooks
+# snippet vanim:js:el
+# 	<transition
+# 	  @before-enter="beforeEnter"
+# 	  @enter="enter"
+# 	  @after-enter="afterEnter"
+# 	  @enter-cancelled="enterCancelled"
+#
+# 	  @before-Leave="beforeLeave"
+# 	  @leave="leave"
+# 	  @after-leave="afterLeave"
+# 	  @leave-cancelled="leaveCancelled"
+# 	  :css="false">
+#
+# 	 </transition>
+# endsnippet
+
+# snippet vanim:js:method
+# 	methods: {
+# 		beforeEnter(el) {
+# 			console.log('beforeEnter');
+# 		},
+# 		enter(el, done) {
+# 			console.log('enter');
+# 			done();
+# 		},
+# 		afterEnter(el) {
+# 			console.log('afterEnter');
+# 		},
+# 		enterCancelled(el, done) {
+# 			console.log('enterCancelled');
+# 		},
+# 		beforeLeave(el) {
+# 			console.log('beforeLeave');
+# 		},
+# 		leave(el, done) {
+# 			console.log('leave');
+# 			done();
+# 		},
+# 		afterLeave(el) {
+# 			console.log('afterLeave');
+# 		},
+# 		leaveCancelled(el, done) {
+# 			console.log('leaveCancelled');
+# 		}
+# 	}
+# endsnippet
+
+# snippet vcl
+# 	@click="${1}"
+# endsnippet
+
+snippet data
+data() {
+	return {
+		${1:key}: ${2:value}
+	};
+}
+endsnippet
+
+snippet filters
+filters: {
+	${1:fnName}: function(${2:value}) {
+		return;
+	}
+}
+endsnippet
+
+snippet vfor
+<div v-for="${1:item} in ${2:items}" :key="$1.id">
+	{{ $1 }}
+</div
+endsnippet
+
+snippet getters
+getters: {
+	${1:value}: state => {
+		return state.$1;
+	}
+}
+endsnippet
+
+snippet import
+import ${1:New} from './components/$1.vue';
+endsnippet
+
+# snippet vkeep
+# 	<keep-alive>
+# 		<component :is="">
+# 			<p>default</p>
+# 		</component>
+# 	</keep-alive>
+# endsnippet
+
+# snippet vmixin
+# 	const ${1:mixinName} = {
+# 		mounted() {
+# 			console.log('hello from mixin!')
+# 		},
+# 	}
+# 	const ${2:Component} = Vue.extend({
+# 		mixins: [$1]
+# 	})
+# endsnippet
+
+snippet mutations
+mutations: {
+	${1:updateValue}(state, ${3:payload}) => {
+		state.${2:value} = $3;
+	}
+}
+endsnippet
+
+# snippet vprops:d
+# 	${1:propName}: {
+# 	  type: ${2:Number},
+# 	  default: ${0}
+# 	},
+# endsnippet
+
+snippet props
+${1:propName}: {
+	type: ${2:Number}
+},
+endsnippet
+
+snippet store
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+	state: {
+		${1:key}: ${2:value}
+	}
+});
+endsnippet
+
+# snippet trans
+# 	$t('$1')
+# endsnippet
+#
+# snippet transc
+# 	$t('$1', { $2: $3 })
+# endsnippet
+
