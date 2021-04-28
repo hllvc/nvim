@@ -1,4 +1,8 @@
-# Neovim config files with [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
+# Neovim configuration
+
+Neovim config files and plugins with [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
+
+![image](images/image.png)
 
 ## How to install?
 
