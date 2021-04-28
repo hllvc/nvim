@@ -33,6 +33,12 @@ otherwise
 rm -rf ~/.config/nvim/ultisnips
 ```
 
-to delete cloned folder.
+to delete ultisnips directory and
+
+```
+rm -rf ~/.config/nvim/images
+```
+
+to delete images directory.
 
 #### Maybe for some plugins to work additional packages need to be downloaded.
