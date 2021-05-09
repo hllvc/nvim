@@ -32,8 +32,19 @@ set laststatus=2
 set so=999
 set hidden
 set noshowmode
+
 set wildmenu
 set wildmode=longest,list,full
+
+" ignore files
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=**/coverage/*
+set wildignore+=**/node_modules/*
+set wildignore+=**/android/*
+set wildignore+=**/ios/*
+set wildignore+=**/.git/*
+
 set shell=$SHELL
 set cmdheight=1
 set title
@@ -134,5 +145,7 @@ Plug 'lervag/vimtex'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'airblade/vim-gitgutter'
+
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()

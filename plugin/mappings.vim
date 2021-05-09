@@ -2,6 +2,8 @@ let mapleader=' '
 inoremap jk <esc>
 nmap <silent><leader><leader> :w<cr>
 
+nnoremap <leader>y gg"+yG
+
 " new tab
 nnoremap <silent><leader>t :tabnew<CR>
 
