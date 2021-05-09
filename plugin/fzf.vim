@@ -1,5 +1,6 @@
-nnoremap <C-p> :Files<cr>
+nnoremap <C-s> :Files<cr>
 nnoremap <C-g> :GFiles?<cr>
+nnoremap <C-p> :GFiles<cr>
 
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
