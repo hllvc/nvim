@@ -12,26 +12,11 @@
   "explorer.keyMappings.global": {
     "v": "open:vsplit"
   },
-  "git.addedSign.hlGroup": "GitGutterAdd",
-  "git.changedSign.hlGroup": "GitGutterChange",
-  "git.removedSign.hlGroup": "GitGutterDelete",
-  "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "codeLens.enable": true,
-  "git.realtimeGutters": true,
-  "git.enableGutters": true,
-  "vetur.dev.vlsPath": "/usr/lib/vls",
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showExpandedAbbreviation": "always",
   "emmet.excludeLanguages": ["markdown"],
-  "emmet.syntaxProfiles": {
-    "vue-html": "html",
-    "vue": "html"
-  },
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "vue-html": "html",
-    "vue": "html"
+    "javascript": "javascriptreact"
   },
   "html.autoClosingTags": true,
   "coc.preferences.extensionUpdateCheck": "daily",
