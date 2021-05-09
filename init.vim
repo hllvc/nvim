@@ -49,7 +49,7 @@ set shell=$SHELL
 set cmdheight=1
 set title
 set showmatch
-set updatetime=500
+set updatetime=100
 set nobackup
 set nowritebackup
 set signcolumn=yes

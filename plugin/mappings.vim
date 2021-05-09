@@ -1,6 +1,7 @@
 let mapleader=' '
 inoremap jk <esc>
 nmap <silent><leader><leader> :w<cr>
+nmap <silent><leader>q :wq<cr>
 
 nnoremap <leader>y gg"+yG
 
