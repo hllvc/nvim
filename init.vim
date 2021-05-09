@@ -133,4 +133,6 @@ Plug 'lervag/vimtex'
 
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
