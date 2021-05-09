@@ -23,7 +23,7 @@
   "vetur.dev.vlsPath": "/usr/lib/vls",
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showExpandedAbbreviation": "always",
-  "emmet.excludeLanguages": ["markdown", "javascript"],
+  "emmet.excludeLanguages": ["markdown"],
   "emmet.syntaxProfiles": {
     "vue-html": "html",
     "vue": "html"
@@ -57,7 +57,6 @@
   "diagnostic.format": "%message",
   "diagnostic.virtualText": false,
   "diagnostic.checkCurrentLine": false,
-  "diagnostic.locationlistUpdate": false,
   "diagnostic.messageDelay": 500,
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
   "list.normalMappings": {
