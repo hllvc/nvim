@@ -22,6 +22,7 @@ let g:startify_commands = [
 
 let g:startify_bookmarks = [
 	\ { 'c': '~/github/nvim/init.vim' },
+	\ { 't': '~/.tmux.conf' },
 	\ { 'p': '~/github/nvim/plugin/' },
 	\ { 'k': '~/.config/kitty/kitty.conf'},
 	\ { 'z': '~/.zshrc' }

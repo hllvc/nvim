@@ -1,6 +1,6 @@
 " jumb between hunks
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+" nmap ]h <Plug>(GitGutterNextHunk)
+" nmap [h <Plug>(GitGutterPrevHunk)
 
 " Turn off message for hunk in cmd
 " let g:gitgutter_show_msg_on_hunk_jumping = 0

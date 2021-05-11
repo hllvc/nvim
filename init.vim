@@ -1,3 +1,9 @@
+if exists('+termguicolors')
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
+
 set relativenumber
 set enc=utf-8
 set noswapfile
@@ -71,6 +77,8 @@ set foldlevel=1
 " toggle invisible characters
 set list
 set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+
+set colorcolumn=80
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * %s/\s\+$//e
@@ -147,5 +155,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'jiangmiao/auto-pairs'
+
+" tmux plugins
+Plug 'edkolev/tmuxline.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()

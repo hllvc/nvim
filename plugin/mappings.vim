@@ -3,8 +3,6 @@ inoremap jk <esc>
 nmap <silent><leader><leader> :w<cr>
 nmap <silent><leader>q :wq<cr>
 
-nnoremap <leader>y gg"+yG
-
 " new tab
 nnoremap <silent><leader>t :tabnew<CR>
 
@@ -28,11 +26,13 @@ nnoremap <leader><A-j> <C-\><C-n><C-w><S-j>
 nnoremap <leader><A-k> <C-\><C-n><C-w><S-k>
 nnoremap <leader><A-l> <C-\><C-n><C-w><S-l>
 
-" use leader+s for vertical split
-nnoremap <leader>s <C-w>s<CR>
+" use leader+s for split
+nnoremap <leader>e <C-w>s<CR><C-w>j
 
-" use leader+v for split
+" use leader+v for vertical split
 nnoremap <leader>v <C-w>v<CR><C-w>l
+
+nnoremap <leader>r :source %<cr>
 
 " keep visual selection while indenting
 vmap < <gv
