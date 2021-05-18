@@ -4,6 +4,9 @@ if exists('+termguicolors')
 	set termguicolors
 endif
 
+syntax on
+filetype plugin indent on
+
 set relativenumber
 set enc=utf-8
 set noswapfile

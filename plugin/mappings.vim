@@ -96,6 +96,6 @@ endfunction
 let g:term_height = 10
 
 " Toggle terminal on/off (neovim)
-nnoremap <silent><A-t> :call TermToggle(g:term_height)<CR>
-inoremap <silent><A-t> <Esc>:call TermToggle(g:term_height)<CR>
-tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(g:term_height)<CR>
+" nnoremap <silent><A-t> :call TermToggle(g:term_height)<CR>
+" inoremap <silent><A-t> <Esc>:call TermToggle(g:term_height)<CR>
+" tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(g:term_height)<CR>
