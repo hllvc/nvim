@@ -5,6 +5,7 @@ if exists('+termguicolors')
 endif
 
 syntax on
+syntax sync minlines=64
 filetype plugin indent on
 
 set relativenumber
@@ -26,6 +27,7 @@ set smartcase
 set nohlsearch
 set incsearch
 set lazyredraw
+set synmaxcol=128
 
 set noerrorbells
 set novisualbell
@@ -36,14 +38,14 @@ set linebreak
 set showbreak=↪
 set autoindent
 set ttyfast
-set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
+" set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
 set laststatus=2
 set so=999
 set hidden
 set noshowmode
 
-set wildmenu
-set wildmode=longest,list,full
+" set wildmenu
+" set wildmode=longest,list,full
 
 " ignore files
 set wildignore+=*.pyc
@@ -58,7 +60,7 @@ set shell=$SHELL
 set cmdheight=1
 set title
 set showmatch
-set updatetime=100
+set updatetime=500
 set nobackup
 set nowritebackup
 set signcolumn=yes
@@ -84,9 +86,9 @@ set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set colorcolumn=80
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\n\+\%$//e
-autocmd BufWritePre *.[ch] %s/\%$/\r/e
+" autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * %s/\n\+\%$//e
+" autocmd BufWritePre *.[ch] %s/\%$/\r/e
 
 call plug#begin("~/.vim/plugged")
 
@@ -127,7 +129,6 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'matze/vim-move'
 
 " commenting
 Plug 'tpope/vim-commentary'

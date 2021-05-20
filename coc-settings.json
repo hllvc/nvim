@@ -1,7 +1,15 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdow",
+    "javascript",
+    "html",
+    "json"
+  ],
   "prettier.disableLanguages": ["c", "cpp", "objc"],
   "prettier.jsxSingleQuote": true,
   "prettier.arrowParens": "avoid",
+
   "explorer.width": 30,
   "explorer.file.autoReveal": false,
   "explorer.icon.enableNerdfont": true,
@@ -12,47 +20,35 @@
   "explorer.keyMappings.global": {
     "v": "open:vsplit"
   },
+
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showExpandedAbbreviation": "always",
-  "emmet.excludeLanguages": ["markdown"],
+  "emmet.excludeLanguages": ["markdown", "c", "cpp"],
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
   "html.autoClosingTags": true,
+
   "coc.preferences.extensionUpdateCheck": "daily",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "go",
-    "python",
-    "markdown",
-    "javascript",
-    "vue",
-    "typescript",
-    "json",
-    "jsonc",
-    "css",
-    "html",
-    "scss"
-  ],
   "coc.source.around.firstMatch": false,
   "coc.source.file.ignoreHidden": false,
+
+  "diagnostic-languageserver.debug": true,
+  "diagnostic-languageserver.linters": {
+    "cpp": "cpplint"
+  },
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.format": "%message",
-  "diagnostic.virtualText": false,
+  "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": false,
-  "diagnostic.messageDelay": 500,
-  "diagnostic.separateRelatedInformationAsDiagnostics": true,
-  "list.normalMappings": {
-    "<C-c>": "do:exit"
-  },
-  "list.insertMappings": {
-    "<C-c>": "do:exit"
-  },
+
   "signature.target": "echo",
   "suggest.timeout": 5000,
   "suggest.asciiCharactersOnly": true,
+
   "languageserver": {
     "vimls": {
       "module": "/usr/lib/node_modules/vim-language-server/bin/index.js",
@@ -85,16 +81,19 @@
     },
     "ccls": {
       "command": "ccls",
-      "args": ["--log-file=/tmp/ccls.log", "-v=1"],
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg"
+      ],
       "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        },
-        "client": {
-          "snippetSupport": true
-        }
+        "index": { "onChange": true },
+        "highlight": { "lsRanges": true },
+        "cache": { "directory": "/tmp/ccls" },
+        "client": { "snippetSupport": true }
       }
     }
   }
