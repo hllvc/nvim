@@ -1,11 +1,26 @@
+" let g:coc_global_extensions = [
+" 				\ 'coc-snippets',
+" 				\ 'coc-scssmodules',
+" 				\ 'coc-html',
+" 				\ 'coc-emmet',
+" 				\ 'coc-html-css-support',
+" 				\ 'coc-css',
+" 				\ 'coc-vimtex',
+" 				\ 'coc-pyright',
+" 				\ 'coc-json',
+" 				\ 'coc-tsserver',
+" 				\ 'coc-eslint',
+" 				\ 'coc-sh',
+" 				\ 'coc-prettier',
+" 				\ 'coc-explorer',
+" 				\ 'coc-diagnostic',
+" 				\ 'coc-solargraph',
+" 				\ 'coc-docker',
+" 				\ 'coc-yaml'
+" 				\ ]
+
 let g:coc_global_extensions = [
 				\ 'coc-snippets',
-				\ 'coc-scssmodules',
-				\ 'coc-html',
-				\ 'coc-emmet',
-				\ 'coc-html-css-support',
-				\ 'coc-css',
-				\ 'coc-vimtex',
 				\ 'coc-pyright',
 				\ 'coc-json',
 				\ 'coc-tsserver',
