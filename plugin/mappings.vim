@@ -3,6 +3,10 @@ inoremap jk <esc>
 nmap <silent><leader><leader> :w<cr>
 nmap <silent><leader>q :wq<cr>
 
+" let j & k navigate visual lines instead of logical
+nmap j gj
+nmap k gk
+
 " new tab
 nnoremap <silent><leader>t :tabnew<CR>
 
@@ -38,8 +42,14 @@ nnoremap <leader>r :source %<cr>
 vmap < <gv
 vmap > >gv
 
+" select what was pasted
+nnoremap <Leader>p V`]
+
 " switch between current and last buffer
 nmap <leader>n <c-^>
+
+" close current buffer
+nmap <silent><Leader>w :bd<CR>
 
 " enable . command in visual mode
 vnoremap . :normal .<cr>

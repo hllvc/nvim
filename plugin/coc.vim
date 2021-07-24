@@ -1,18 +1,37 @@
+" let g:coc_global_extensions = [
+" 				\ 'coc-snippets',
+" 				\ 'coc-scssmodules',
+" 				\ 'coc-html',
+" 				\ 'coc-emmet',
+" 				\ 'coc-html-css-support',
+" 				\ 'coc-css',
+" 				\ 'coc-vimtex',
+" 				\ 'coc-pyright',
+" 				\ 'coc-json',
+" 				\ 'coc-tsserver',
+" 				\ 'coc-eslint',
+" 				\ 'coc-sh',
+" 				\ 'coc-prettier',
+" 				\ 'coc-explorer',
+" 				\ 'coc-diagnostic',
+" 				\ 'coc-solargraph',
+" 				\ 'coc-docker',
+" 				\ 'coc-yaml'
+" 				\ ]
+
 let g:coc_global_extensions = [
 				\ 'coc-snippets',
-				\ 'coc-scssmodules',
-				\ 'coc-html',
-				\ 'coc-emmet',
-				\ 'coc-html-css-support',
-				\ 'coc-css',
-				\ 'coc-vimtex',
 				\ 'coc-pyright',
 				\ 'coc-json',
 				\ 'coc-tsserver',
+				\ 'coc-eslint',
 				\ 'coc-sh',
 				\ 'coc-prettier',
 				\ 'coc-explorer',
-				\ 'coc-diagnostic'
+				\ 'coc-diagnostic',
+				\ 'coc-solargraph',
+				\ 'coc-docker',
+				\ 'coc-yaml'
 				\ ]
 
 " Use <c-space> to trigger completion.
@@ -51,8 +70,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
 autocmd!
