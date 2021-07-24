@@ -18,8 +18,8 @@ set history=1000
 set backspace=indent,eol,start
 set clipboard=unnamed
 
-set go=a
-set mouse=a
+" set go=a
+" set mouse=a
 
 " searching
 set ignorecase
@@ -86,6 +86,14 @@ set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set colorcolumn=80
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " autocmd BufWritePre * %s/\s\+$//e
 " autocmd BufWritePre * %s/\n\+\%$//e
 " autocmd BufWritePre *.[ch] %s/\%$/\r/e
@@ -95,10 +103,9 @@ call plug#begin("~/.vim/plugged")
 " Startify
 Plug 'mhinz/vim-startify'
 
-Plug 'preservim/tagbar'
-
-" cpp highlighting
-Plug 'octol/vim-cpp-enhanced-highlight'
+" fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " text obj indent
 Plug 'kana/vim-textobj-user'
@@ -110,15 +117,14 @@ Plug 'christoomey/vim-sort-motion'
 " context-aware pasting
 Plug 'sickill/vim-pasta'
 
-" fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" cpp/c
+" Plug 'rhysd/vim-clang-format'
+
+" cpp highlighting
+" Plug 'octol/vim-cpp-enhanced-highlight'
 
 " markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
-" cpp/c
-Plug 'rhysd/vim-clang-format'
 
 " airline
 Plug 'vim-airline/vim-airline'
@@ -135,24 +141,25 @@ Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
 
 " sytax checker
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 
 " Javascript/Typescript/JSX/Vue
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'othree/yajs.vim'
+Plug 'yuezk/vim-js'
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'turbio/bracey.vim'
+" Plug 'turbio/bracey.vim'
 
 " scss & css
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'ap/vim-css-color'
+" Plug 'cakebaker/scss-syntax.vim'
+" Plug 'hail2u/vim-css3-syntax'
+" Plug 'ap/vim-css-color'
 
 " match tags in html, similar to paren support
-Plug 'gregsexton/MatchTag', { 'for': 'html' }
+" Plug 'gregsexton/MatchTag', { 'for': 'html' }
 
 " latex
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -163,5 +170,11 @@ Plug 'jiangmiao/auto-pairs'
 " tmux plugins
 Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
+
+" Jenkinsfile
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'burnettk/vim-jenkins'
+
+au BufCreate,BufRead Dockerfile.build,Dockerfile.run setf dockerfile
 
 call plug#end()

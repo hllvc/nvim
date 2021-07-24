@@ -1,4 +1,7 @@
 {
+  "yaml.schemas": {
+    "kubernetes": "/*.yaml"
+  },
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdow",
@@ -11,9 +14,9 @@
   "prettier.arrowParens": "avoid",
 
   "explorer.width": 30,
-  "explorer.file.autoReveal": false,
+  "explorer.file.reveal.auto": true,
   "explorer.icon.enableNerdfont": true,
-  "explorer.icon.enableVimDevicons": true,
+  "explorer.icon.source": "vim-devicons",
   "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
   "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
   "explorer.file.root.template": "[icon & 1] [root]",
@@ -23,7 +26,7 @@
 
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showExpandedAbbreviation": "always",
-  "emmet.excludeLanguages": ["markdown", "c", "cpp"],
+  "emmet.excludeLanguages": ["markdown", "c", "cpp", "javascript"],
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -34,22 +37,24 @@
   "coc.source.file.ignoreHidden": false,
 
   "diagnostic-languageserver.debug": true,
-  "diagnostic-languageserver.linters": {
-    "cpp": "cpplint"
-  },
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.format": "%message",
-  "diagnostic.virtualText": true,
-  "diagnostic.checkCurrentLine": false,
+  "diagnostic.virtualText": false,
+  "diagnostic.checkCurrentLine": true,
 
   "signature.target": "echo",
   "suggest.timeout": 5000,
   "suggest.asciiCharactersOnly": true,
 
   "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
+    },
     "vimls": {
       "module": "/usr/lib/node_modules/vim-language-server/bin/index.js",
       "args": ["--node-ipc"],
@@ -81,6 +86,7 @@
     },
     "ccls": {
       "command": "ccls",
+      "trace.server": "verbose",
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
       "rootPatterns": [
         ".ccls",
@@ -90,8 +96,6 @@
         ".hg"
       ],
       "initializationOptions": {
-        "index": { "onChange": true },
-        "highlight": { "lsRanges": true },
         "cache": { "directory": "/tmp/ccls" },
         "client": { "snippetSupport": true }
       }
