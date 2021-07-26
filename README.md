@@ -16,15 +16,14 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 then clone this repo to `~/.config/nvim` and install plugins
 
 ```
-git clone https://github.com/hllvc/nvim.git ~/.config/nvim
-mv ~/.config/nvim/gruvbox-material.vim ~/.vim/colors/gruvbox-material.vim
+git clone https://github.com/hllvc/nvim.git ~/.config/nvim; \
 nvim +PlugInstall +qa
 ```
 
 If you want my custom snippets execute following command
 
 ```
-mv -r ~/.config/nvim/ultisnips ~/.config/coc/
+mv ~/.config/nvim/ultisnips ~/.config/coc/
 ```
 
 otherwise
