@@ -33,7 +33,7 @@ set noerrorbells
 set novisualbell
 
 set number
-set nowrap
+set wrap
 set linebreak
 set showbreak=↪
 set autoindent
@@ -180,5 +180,6 @@ au! BufNewFile,BufCreate,BufRead Dockerfile.build,Dockerfile.run setf dockerfile
 
 Plug 'itspriddle/vim-shellcheck'
 Plug 'mrk21/yaml-vim'
+Plug 'towolf/vim-helm'
 
 call plug#end()

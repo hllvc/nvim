@@ -109,3 +109,6 @@ let g:term_height = 10
 " nnoremap <silent><A-t> :call TermToggle(g:term_height)<CR>
 " inoremap <silent><A-t> <Esc>:call TermToggle(g:term_height)<CR>
 " tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(g:term_height)<CR>
+
+" write with sudo
+command W :execute ':silent w !sudo tee % > /dev/null'
