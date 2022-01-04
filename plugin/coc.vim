@@ -31,7 +31,9 @@ let g:coc_global_extensions = [
 				\ 'coc-diagnostic',
 				\ 'coc-solargraph',
 				\ 'coc-docker',
-				\ 'coc-yaml'
+				\ 'coc-yaml',
+        \ 'coc-emmet',
+        \ 'coc-html'
 				\ ]
 
 " Use <c-space> to trigger completion.
@@ -43,7 +45,9 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <c-l> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <c-j> pumvisible() ? "\<C-n>" : "\<C-h>"
+inoremap <silent><expr> <c-k> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)

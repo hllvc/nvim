@@ -1,7 +1,13 @@
 let mapleader=' '
 inoremap jk <esc>
+inoremap JK <esc>
 nmap <silent><leader><leader> :w<cr>
 nmap <silent><leader>q :wq<cr>
+
+" git conflicts
+nmap <silent><leader>h :diffget //2<cr>
+nmap <silent><leader>l :diffget //3<cr>
+nmap <silent><leader>g :Gvdiffsplit!<cr>
 
 " let j & k navigate visual lines instead of logical
 nmap j gj

@@ -28,12 +28,14 @@ set nohlsearch
 set incsearch
 set lazyredraw
 set synmaxcol=128
+set regexpengine=1
+set noshowcmd
 
 set noerrorbells
 set novisualbell
 
 set number
-set wrap
+set nowrap
 set linebreak
 set showbreak=↪
 set autoindent
@@ -68,13 +70,14 @@ set shortmess+=c
 
 " Tab control
 set smarttab
+set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set shiftround
 
 " code folding
-set foldmethod=syntax
+" set foldmethod=syntax
 set foldlevelstart=99
 set foldnestmax=10
 set foldlevel=1
@@ -173,13 +176,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Jenkinsfile
-Plug 'martinda/Jenkinsfile-vim-syntax'
-Plug 'burnettk/vim-jenkins'
+" Plug 'martinda/Jenkinsfile-vim-syntax'
+" Plug 'burnettk/vim-jenkins'
 
-au! BufNewFile,BufCreate,BufRead Dockerfile.build,Dockerfile.run setf dockerfile
+" au! BufNewFile,BufCreate,BufRead Dockerfile.build,Dockerfile.run setf dockerfile
 
-Plug 'itspriddle/vim-shellcheck'
-Plug 'mrk21/yaml-vim'
-Plug 'towolf/vim-helm'
+" Plug 'itspriddle/vim-shellcheck'
+" Plug 'mrk21/yaml-vim'
+" Plug 'towolf/vim-helm'
 
 call plug#end()

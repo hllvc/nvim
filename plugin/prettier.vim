@@ -1,1 +1,1 @@
-command! -nargs=0 Prettier :cal CocAction{'runCommand', 'prettier.formatFile'}
+" command! -nargs=0 Prettier :cal CocAction{'runCommand', 'prettier.formatFile'}
