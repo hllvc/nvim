@@ -18,8 +18,8 @@ set history=1000
 set backspace=indent,eol,start
 set clipboard=unnamed
 
-" set go=a
-" set mouse=a
+set go=
+set mouse=
 
 " searching
 set ignorecase
@@ -27,15 +27,14 @@ set smartcase
 set nohlsearch
 set incsearch
 set lazyredraw
-set synmaxcol=128
-set regexpengine=1
+" set synmaxcol=128
 set noshowcmd
 
 set noerrorbells
 set novisualbell
 
 set number
-set nowrap
+set wrap
 set linebreak
 set showbreak=↪
 set autoindent
@@ -88,6 +87,8 @@ set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 
 set colorcolumn=80
 
+" remember position
+
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -139,6 +140,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
+" indentLine
+Plug 'Yggdroot/indentLine'
+
+" terraform
+Plug 'hashivim/vim-terraform'
+
 " commenting
 Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
@@ -147,10 +154,14 @@ Plug 'suy/vim-context-commentstring'
 " Plug 'vim-syntastic/syntastic'
 
 " Javascript/Typescript/JSX/Vue
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'othree/yajs.vim'
-Plug 'yuezk/vim-js'
-Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'othree/yajs.vim'
+" Plug 'yuezk/vim-js'
+" Plug 'ianks/vim-tsx'
+" Plug 'leafgarland/typescript-vim'
+
+" Plug 'pangloss/vim-javascript'
+" Plug 'peitalin/vim-jsx-typescript'
 " Plug 'turbio/bracey.vim'
 
 " scss & css
@@ -184,5 +195,11 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'itspriddle/vim-shellcheck'
 " Plug 'mrk21/yaml-vim'
 " Plug 'towolf/vim-helm'
+
+" Helm
+Plug 'towolf/vim-helm'
+
+" reopen last line
+Plug 'farmergreg/vim-lastplace'
 
 call plug#end()

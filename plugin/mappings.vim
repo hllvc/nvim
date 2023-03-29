@@ -72,6 +72,9 @@ onoremap <silent> il :<c-u>normal! g_v^<cr>
 vnoremap <silent> al :<c-u>normal! $v0<cr>
 onoremap <silent> al :<c-u>normal! $v0<cr>
 
+" prettier
+nnoremap <silent><Leader>f :CocCommand prettier.formatFile<cr>
+
 " save all files on focus lost, ignoring warnings about untitled buffers
 autocmd FocusLost * silent! wa
 

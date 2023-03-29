@@ -1,19 +1,21 @@
 {
-  "yaml.format.enable": true,
+  "python.pythonPath": "/usr/local/bin/python3",
+  "diagnostic.enable": true,
+  "suggest.autoTrigger": "always",
+  "yaml.format.enable": false,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "kubernetes": "/*.yaml"
+    "kubernetes": "/k8s*.yaml",
+    "https://raw.githubusercontent.com/composer/composer/main/res/composer-schema.json": "/*",
+    "https://json.schemastore.org/helmfile.json": "/values*.yaml",
+    "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": "/*.gitlab-ci.yml"
   },
-  "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdow",
-    "javascript",
-    "html",
-    "json"
-  ],
-  "prettier.disableLanguages": ["c", "cpp", "objc"],
+  "prettier.singleQuote": true,
   "prettier.jsxSingleQuote": true,
   "prettier.arrowParens": "avoid",
+  "prettier.semi": false,
+  "prettier.disableSuccessMessage": true,
+  "eslint.run": "onType",
 
   "explorer.width": 30,
   "explorer.file.reveal.auto": true,
@@ -28,7 +30,7 @@
 
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showExpandedAbbreviation": "always",
-  "emmet.excludeLanguages": ["markdown", "c", "cpp", "javascript"],
+  "emmet.excludeLanguages": ["markdown", "c", "cpp"],
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -56,51 +58,6 @@
       "command": "gopls",
       "rootPatterns": ["go.mod"],
       "filetypes": ["go"]
-    },
-    "vimls": {
-      "module": "/usr/lib/node_modules/vim-language-server/bin/index.js",
-      "args": ["--node-ipc"],
-      "initializationOptions": {
-        "isNeovim": true,
-        "iskeyword": "@,48-57,_,192-255,-#",
-        "vimruntime": "",
-        "runtimepath": "",
-        "diagnostic": {
-          "enable": true
-        },
-        "indexes": {
-          "runtimepath": true,
-          "gap": 100,
-          "count": 3,
-          "projectRootPatterns": [
-            "strange-root-pattern",
-            ".git",
-            "autoload",
-            "plugin"
-          ]
-        },
-        "suggest": {
-          "fromVimruntime": true,
-          "fromRuntimepath": false
-        }
-      },
-      "filetypes": ["vim"]
-    },
-    "ccls": {
-      "command": "ccls",
-      "trace.server": "verbose",
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg"
-      ],
-      "initializationOptions": {
-        "cache": { "directory": "/tmp/ccls" },
-        "client": { "snippetSupport": true }
-      }
     }
   }
 }
