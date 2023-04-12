@@ -137,6 +137,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/gruvbox-material'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
@@ -190,11 +191,9 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'martinda/Jenkinsfile-vim-syntax'
 " Plug 'burnettk/vim-jenkins'
 
-" au! BufNewFile,BufCreate,BufRead Dockerfile.build,Dockerfile.run setf dockerfile
+" au! BufNewFile,BufCreate,BufRead Dockerfile* setf dockerfile
 
-" Plug 'itspriddle/vim-shellcheck'
 " Plug 'mrk21/yaml-vim'
-" Plug 'towolf/vim-helm'
 
 " Helm
 Plug 'towolf/vim-helm'
